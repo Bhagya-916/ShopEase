@@ -11,7 +11,7 @@
       font-family: Arial, sans-serif;
       margin: 0;
       color: #111;
-      background: #ffffffff;
+      background: #ffffff;
     }
 
     /* Header */
@@ -25,7 +25,7 @@
     }
 
     .logo img {
-      height: 100px;
+      height: 80px;
       width: auto;
       margin-right: 20px;
       display: block;
@@ -34,30 +34,30 @@
     /* Main Layout */
     main {
       display: flex;
+      flex-wrap: wrap;
       padding: 20px;
       gap: 20px;
     }
 
     /* Product Images Grid */
     .product-images {
-      width: 50%;
-      height: fit-content;      
+      flex: 1 1 100%;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 10px;
     }
 
     .product-images img {
-      width: 1000px;
-      height: 500px;
-      max-width: 100%;
+      width: 100%;
+      height: auto;
+      max-height: 300px;
       border-radius: 8px;
       border: 1px solid #00000013;
       transition: transform 0.3s ease;
       background-color: white;
       cursor: pointer;
       object-fit: cover;
-}
+    }
 
     .product-images img:hover {
       transform: scale(1.05);
@@ -66,7 +66,7 @@
 
     /* Product Details */
     .product-details {
-      width: 40%;
+      flex: 1 1 100%;
       padding: 20px;
       background: white;
       border-radius: 8px;
@@ -110,6 +110,7 @@
     .size-options {
       display: flex;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     .size-btn {
@@ -137,12 +138,12 @@
     .size-btn.selected {
       background-color: #ffd900be; 
       color: white;
-      border-color: #ffffffff;
+      border-color: #ffffff;
     }
 
     /* Buy Section */
     .buy-section {
-      width: 25%;
+      flex: 1 1 100%;
       padding: 20px;
       border: 1px solid #ddd;
       border-radius: 8px;
@@ -244,6 +245,19 @@
     .arrow-right {
       right: 20px;
     }
+
+    /* Responsive layout for larger screens */
+    @media (min-width: 768px) {
+      .product-images {
+        flex: 1 1 50%;
+      }
+      .product-details {
+        flex: 1 1 40%;
+      }
+      .buy-section {
+        flex: 1 1 25%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -251,7 +265,8 @@
   <!-- Header -->
   <header>
     <div class="logo">
-      <img src="{% static 'images/logo1.png' %}" alt="ShopEase Logo">
+      <a href="/">
+      <img src="{% static 'images/logo1.png' %}" alt="ShopEase Logo"></a>
     </div>
   </header>
 
@@ -281,7 +296,7 @@
         <div class="size-options">
           <button class="size-btn">S</button>
           <button class="size-btn">M</button>
-          <button class="size-btn ">L</button>
+          <button class="size-btn">L</button>
           <button class="size-btn disabled">XL</button>
         </div>
       </div>
