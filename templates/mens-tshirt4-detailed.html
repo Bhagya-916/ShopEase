@@ -1,13 +1,13 @@
-{% load static%}
+  {% load static%}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Van Heusen Formal Printed Shirt</title>
-  <style>
-    body {
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Van Heusen Formal Printed Shirt</title>
+    <style>
+       body {
       font-family: Arial, sans-serif;
       margin: 0;
       background-color: #f8f8f8;
@@ -35,30 +35,31 @@
     /* Main Layout */
     main {
       display: flex;
+      flex-direction: column; /* Mobile default: stack vertically */
       padding: 20px;
       gap: 20px;
     }
 
     /* Product Images Grid */
     .product-images {
-      width: 50%;
-      height: fit-content;      
+      flex: 1 1 100%;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 10px;
+      order: 1; /* First on mobile */
     }
 
     .product-images img {
-      width: 1000px;
-      height: 500px;
-      max-width: 100%;
+      width: 100%;
+      height: auto;
+      max-width: 300px;
       border-radius: 8px;
       border: 1px solid #00000013;
       transition: transform 0.3s ease;
       background-color: white;
       cursor: pointer;
       object-fit: cover;
-}
+    }
 
     .product-images img:hover {
       transform: scale(1.05);
@@ -67,11 +68,12 @@
 
     /* Product Details */
     .product-details {
-      width: 40%;
+      flex: 1 1 100%;
       padding: 20px;
       background: white;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      order: 2; /* Second on mobile */
     }
 
     .product-details h1 {
@@ -143,13 +145,14 @@
 
     /* Buy Section */
     .buy-section {
-      width: 25%;
+      flex: 1 1 100%;
       padding: 20px;
       border: 1px solid #ddd;
       border-radius: 8px;
       height: fit-content;
       background: white;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      order: 3; /* Third on mobile */
     }
 
     .buy-btn, .cart-btn {
@@ -245,173 +248,201 @@
     .arrow-right {
       right: 20px;
     }
-  </style>
-</head>
-<body>
 
-  <!-- Header -->
-  <header>
-    <div class="logo">
-      <img src="{% static 'images/logo1.png' %}" alt="ShopEase Logo">
-    </div>
-  </header>
+    /* Responsive Design */
+    @media (min-width: 768px){
+      main {
+        flex-direction: row;
+        align-items: stretch;
+      }
+      .product-images {
+        flex: 1 1 50%;
+        order: 1;
+        display:grid;
+        grid-template-columns:repeat(2, 1fr);
+        gap: 15px;
+      }
+      .product-details {
+        flex: 1 1 40%; 
+        order: 2;
+        display: flex;
+        flex-direction: column;
+      }
+      .buy-section {
+        flex: 1 1 25%;
+        order: 3;
+        display: flex;
+        flex-direction: column;
+      }
+    }
 
-  <!-- Main Content -->
-  <main>
-    <!-- Product Images Grid -->
-    <div class="product-images">
-      <img src="https://m.media-amazon.com/images/I/71xjk3CUHhL._SY550_.jpg" alt="Shirt Front">
-      <img src="https://m.media-amazon.com/images/I/81P7c6Xc3oL._SY550_.jpg" alt="Shirt Back">
-      <img src="https://m.media-amazon.com/images/I/91PIKvntfaL._SY550_.jpg" alt="Shirt Closeup">
-      <img src="https://m.media-amazon.com/images/I/81Snh37fQXL._SY550_.jpg" alt="Shirt Side View">
-    </div>
+    </style>
+  </head>
+  <body>
 
-    <!-- Product Details -->
-    <div class="product-details">
-      <h1>Van Heusen Formal Printed Shirt for Men | Premium Cotton | Full Sleeves | Slim Fit | Breathable Fabric</h1>
-      <div>
-        <span class="price">₹936</span>
-        <span class="old-price">₹1,899</span>
-        <span class="discount">-51%</span>
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <img src="{% static 'images/logo1.png' %}" alt="ShopEase Logo">
       </div>
-      <p>Inclusive of all taxes</p>
+    </header>
 
-      <!-- Sizes Section -->
-      <div class="sizes">
-        <label>Available Sizes:</label>
-        <div class="size-options">
-          <button class="size-btn">S</button>
-          <button class="size-btn">M</button>
-          <button class="size-btn ">L</button>
-          <button class="size-btn disabled">XL</button>
+    <!-- Main Content -->
+    <main>
+      <!-- Product Images Grid -->
+      <div class="product-images">
+        <img src="https://m.media-amazon.com/images/I/71xjk3CUHhL._SY550_.jpg" alt="Shirt Front">
+        <img src="https://m.media-amazon.com/images/I/81P7c6Xc3oL._SY550_.jpg" alt="Shirt Back">
+        <img src="https://m.media-amazon.com/images/I/91PIKvntfaL._SY550_.jpg" alt="Shirt Closeup">
+        <img src="https://m.media-amazon.com/images/I/81Snh37fQXL._SY550_.jpg" alt="Shirt Side View">
+      </div>
+
+      <!-- Product Details -->
+      <div class="product-details">
+        <h1>Van Heusen Formal Printed Shirt for Men | Premium Cotton | Full Sleeves | Slim Fit | Breathable Fabric</h1>
+        <div>
+          <span class="price">₹936</span>
+          <span class="old-price">₹1,899</span>
+          <span class="discount">-51%</span>
         </div>
-      </div>
+        <p>Inclusive of all taxes</p>
 
-      <!-- Quantity section -->
-      <div class="product-quantity">
-        <h3>Quantity:</h3>
-        <div class="quantity-selector">
-          <button id="decrease">-</button>
-          <span id="quantity">1</span>
-          <button id="increase">+</button>
+        <!-- Sizes Section -->
+        <div class="sizes">
+          <label>Available Sizes:</label>
+          <div class="size-options">
+            <button class="size-btn">S</button>
+            <button class="size-btn">M</button>
+            <button class="size-btn ">L</button>
+            <button class="size-btn disabled">XL</button>
+          </div>
         </div>
+
+        <!-- Quantity section -->
+        <div class="product-quantity">
+          <h3>Quantity:</h3>
+          <div class="quantity-selector">
+            <button id="decrease">-</button>
+            <span id="quantity">1</span>
+            <button id="increase">+</button>
+          </div>
+        </div>
+
+        <p>⭐⭐⭐⭐☆ (328 reviews)</p>
+        <p>Made from premium breathable cotton fabric, this slim-fit shirt ensures all-day comfort while giving a classy look for any occasion.</p>
       </div>
 
-      <p>⭐⭐⭐⭐☆ (328 reviews)</p>
-      <p>Made from premium breathable cotton fabric, this slim-fit shirt ensures all-day comfort while giving a classy look for any occasion.</p>
+      <!-- Buy Section -->
+      <div class="buy-section">
+        <p class="price">₹936</p>
+        <p>FREE Delivery by Wednesday, 13 August</p>
+        <button class="cart-btn">Add to Cart</button>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+    </main>
+
+    <!-- Modal HTML -->
+    <div class="image-modal" id="imageModal">
+      <span class="arrow arrow-left" id="prev">&#10094;</span>
+      <img id="modalImage" src="" alt="Zoomed Product Image">
+      <span class="arrow arrow-right" id="next">&#10095;</span>
     </div>
 
-    <!-- Buy Section -->
-    <div class="buy-section">
-      <p class="price">₹936</p>
-      <p>FREE Delivery by Wednesday, 13 August</p>
-      <button class="cart-btn">Add to Cart</button>
-      <button class="buy-btn">Buy Now</button>
-    </div>
-  </main>
+  <script>
+    let quantity = 1;
+    const increaseBtn = document.getElementById("increase");
+    const decreaseBtn = document.getElementById("decrease");
+    const quantityDisplay = document.getElementById("quantity");
 
-  <!-- Modal HTML -->
-  <div class="image-modal" id="imageModal">
-    <span class="arrow arrow-left" id="prev">&#10094;</span>
-    <img id="modalImage" src="" alt="Zoomed Product Image">
-    <span class="arrow arrow-right" id="next">&#10095;</span>
-  </div>
-
-<script>
-  let quantity = 1;
-  const increaseBtn = document.getElementById("increase");
-  const decreaseBtn = document.getElementById("decrease");
-  const quantityDisplay = document.getElementById("quantity");
-
-  increaseBtn.addEventListener("click", () => {
-    quantity++;
-    quantityDisplay.innerText = quantity;
-  });
-
-  decreaseBtn.addEventListener("click", () => {
-    if (quantity > 1) {
-      quantity--;
+    increaseBtn.addEventListener("click", () => {
+      quantity++;
       quantityDisplay.innerText = quantity;
-    }
-  });
-
-  // Size button selection
-  const sizeButtons = document.querySelectorAll(".size-btn:not(.disabled)");
-  sizeButtons.forEach(button => {
-    button.addEventListener("click", function() {
-      sizeButtons.forEach(btn => btn.classList.remove("selected"));
-      this.classList.add("selected");
     });
-  });
 
-  // Image modal with arrows
-  const modal = document.getElementById("imageModal");
-  const modalImg = document.getElementById("modalImage");
-  const productImages = document.querySelectorAll(".product-images img");
-  const prevBtn = document.getElementById("prev");
-  const nextBtn = document.getElementById("next");
-
-  let currentIndex = 0;
-  let scale = 1;
-
-  productImages.forEach((img, index) => {
-    img.addEventListener("click", function() {
-      currentIndex = index;
-      openModal();
+    decreaseBtn.addEventListener("click", () => {
+      if (quantity > 1) {
+        quantity--;
+        quantityDisplay.innerText = quantity;
+      }
     });
-  });
 
-  function openModal() {
-    modal.style.display = "flex";
-    modalImg.src = productImages[currentIndex].src;
-    scale = 1;
-    modalImg.style.transform = `scale(${scale})`;
-  }
+    // Size button selection
+    const sizeButtons = document.querySelectorAll(".size-btn:not(.disabled)");
+    sizeButtons.forEach(button => {
+      button.addEventListener("click", function() {
+        sizeButtons.forEach(btn => btn.classList.remove("selected"));
+        this.classList.add("selected");
+      });
+    });
 
-  function closeModal() {
-    modal.style.display = "none";
-  }
+    // Image modal with arrows
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImage");
+    const productImages = document.querySelectorAll(".product-images img");
+    const prevBtn = document.getElementById("prev");
+    const nextBtn = document.getElementById("next");
 
-  prevBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    currentIndex = (currentIndex - 1 + productImages.length) % productImages.length;
-    openModal();
-  });
+    let currentIndex = 0;
+    let scale = 1;
 
-  nextBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    currentIndex = (currentIndex + 1) % productImages.length;
-    openModal();
-  });
+    productImages.forEach((img, index) => {
+      img.addEventListener("click", function() {
+        currentIndex = index;
+        openModal();
+      });
+    });
 
-  modal.addEventListener("click", function(e) {
-    if (e.target === modal) {
-      closeModal();
+    function openModal() {
+      modal.style.display = "flex";
+      modalImg.src = productImages[currentIndex].src;
+      scale = 1;
+      modalImg.style.transform = `scale(${scale})`;
     }
-  });
 
-  modalImg.addEventListener("wheel", function(e) {
-    e.preventDefault();
-    if (e.deltaY < 0) {
-      scale += 0.1;
-    } else {
-      scale = Math.max(1, scale - 0.1);
+    function closeModal() {
+      modal.style.display = "none";
     }
-    modalImg.style.transform = `scale(${scale})`;
-  });
 
-  document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape") {
-      closeModal();
-    } else if (e.key === "ArrowRight") {
-      currentIndex = (currentIndex + 1) % productImages.length;
-      openModal();
-    } else if (e.key === "ArrowLeft") {
+    prevBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
       currentIndex = (currentIndex - 1 + productImages.length) % productImages.length;
       openModal();
-    }
-  });
-</script>  
+    });
 
-</body>
-</html>
+    nextBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      currentIndex = (currentIndex + 1) % productImages.length;
+      openModal();
+    });
+
+    modal.addEventListener("click", function(e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    modalImg.addEventListener("wheel", function(e) {
+      e.preventDefault();
+      if (e.deltaY < 0) {
+        scale += 0.1;
+      } else {
+        scale = Math.max(1, scale - 0.1);
+      }
+      modalImg.style.transform = `scale(${scale})`;
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") {
+        closeModal();
+      } else if (e.key === "ArrowRight") {
+        currentIndex = (currentIndex + 1) % productImages.length;
+        openModal();
+      } else if (e.key === "ArrowLeft") {
+        currentIndex = (currentIndex - 1 + productImages.length) % productImages.length;
+        openModal();
+      }
+    });
+  </script>  
+
+  </body>
+  </html>

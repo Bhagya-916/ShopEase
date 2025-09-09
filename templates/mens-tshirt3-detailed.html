@@ -35,30 +35,31 @@
     /* Main Layout */
     main {
       display: flex;
+      flex-direction: column; /* Mobile default: stack vertically */
       padding: 20px;
       gap: 20px;
     }
 
     /* Product Images Grid */
     .product-images {
-      width: 50%;
-      height: fit-content;      
+      flex: 1 1 100%;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 10px;
+      order: 1; /* First on mobile */
     }
 
     .product-images img {
-      width: 1000px;
-      height: 500px;
-      max-width: 100%;
+      width: 100%;
+      height: auto;
+      max-width: 300px;
       border-radius: 8px;
       border: 1px solid #00000013;
       transition: transform 0.3s ease;
       background-color: white;
       cursor: pointer;
       object-fit: cover;
-}
+    }
 
     .product-images img:hover {
       transform: scale(1.05);
@@ -67,11 +68,12 @@
 
     /* Product Details */
     .product-details {
-      width: 40%;
+      flex: 1 1 100%;
       padding: 20px;
       background: white;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      order: 2; /* Second on mobile */
     }
 
     .product-details h1 {
@@ -143,13 +145,14 @@
 
     /* Buy Section */
     .buy-section {
-      width: 25%;
+      flex: 1 1 100%;
       padding: 20px;
       border: 1px solid #ddd;
       border-radius: 8px;
       height: fit-content;
       background: white;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      order: 3; /* Third on mobile */
     }
 
     .buy-btn, .cart-btn {
@@ -245,6 +248,34 @@
     .arrow-right {
       right: 20px;
     }
+
+    /* Responsive Design */
+    @media (min-width: 768px){
+      main {
+        flex-direction: row;
+        align-items: stretch;
+      }
+      .product-images {
+        flex: 1 1 50%;
+        order: 1;
+        display:grid;
+        grid-template-columns:repeat(2, 1fr);
+        gap: 15px;
+      }
+      .product-details {
+        flex: 1 1 40%; 
+        order: 2;
+        display: flex;
+        flex-direction: column;
+      }
+      .buy-section {
+        flex: 1 1 25%;
+        order: 3;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -252,7 +283,9 @@
   <!-- Header -->
   <header>
     <div class="logo">
+      <a href="/">
       <img src="{% static 'images/logo1.png' %}" alt="ShopEase Logo">
+      </a>
     </div>
   </header>
 
