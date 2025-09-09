@@ -161,37 +161,32 @@
     }
   </style>
 </head>
-<body>
-  <div>
-    <img src="{% static 'images/logo1.png' %}" alt="Logo" class="logo"/>
-  </div>
-
+<body>  <div>
+       <img src="{% static 'images/logo1.png' %}" alt="Logo" class="logo"/>
+       </div>
   <div class="container">
-    <div class="image-section"></div>
 
-    <form class="form-section" action="/" method="POST">
+    <div class="image-section">
+
+    </div>
+
+    <form class="form-section" Action="/">
       <h2>Welcome Back!</h2>
-
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required />
-      </div>
-
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required />
-      </div>
-
-      <button type="submit" class="btn-login">Login</button>
-
-      <div class="signup-link" style="margin-top: 10px;">
-        <a href="#">Forgot Password?</a>
-      </div>
-
-      <div class="signup-link">
-        Don't have an account? <a href="#">Sign up</a>
-      </div>
-    </form>
+      <form>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required />
+        </div>
+        <button type="submit" class="btn-login">Login</button> 
+        <div class="signup-link">
+          Don't have an account? <a href="#">Sign up</a>
+        </div>
+      </form>
+    </div>
   </div>
 </body>
 </html>
